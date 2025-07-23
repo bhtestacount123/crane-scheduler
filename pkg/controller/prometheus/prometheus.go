@@ -80,7 +80,7 @@ func (p *promClient) QueryByNodeName(metricName, name string) (string, error) {
 }
 
 func (p *promClient) QueryByNodeIPWithOffset(metricName, ip, offset string) (string, error) {
-	klog.V(4).Info("Try to query %s with offset %s by node IP[%s]", metricName, offset, ip)
+	klog.V(4).Infof("Try to query %s with offset %s by node IP[%s]", metricName, offset, ip)
 
 	querySelector := fmt.Sprintf("%s{instance=~\"%s\"} offset %s /100", metricName, ip, offset)
 	result, err := p.query(querySelector)

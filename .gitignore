@@ -21,6 +21,7 @@
 
 .idea/
 .vscode/
+.kiro/
 
 # binary
 bin/

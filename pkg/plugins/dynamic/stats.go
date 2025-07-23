@@ -100,7 +100,7 @@ func isOverLoad(name string, anno map[string]string, predicatePolicy policy.Pred
 
 	// threshold was set as 0 means that the filter according to this metric is useless.
 	if predicatePolicy.MaxLimitPecent == 0 {
-		klog.V(4).Info("[crane] ignore the filter of resource[%s] for MaxLimitPecent was set as 0")
+		klog.V(4).Infof("[crane] ignore the filter of resource[%s] for MaxLimitPecent was set as 0", predicatePolicy.Name)
 		return false
 	}
 
@@ -125,7 +125,7 @@ func getNodeScore(name string, anno map[string]string, policySpec policy.PolicyS
 
 		priorityScore, err := getScore(anno, priorityPolicy, policySpec.SyncPeriod)
 		if err != nil {
-			klog.Errorf("[crane] failed to get node 's score: %v", name, priorityPolicy.Name, score)
+			klog.Errorf("[crane] failed to get node %s's score for %s: %v", name, priorityPolicy.Name, err)
 		}
 
 		weight += priorityPolicy.Weight

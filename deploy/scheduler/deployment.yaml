@@ -27,7 +27,7 @@ spec:
             defaultMode: 420
       containers:
         - name: crane-scheduler
-          image: docker.io/gocrane/crane-scheduler:0.0.23
+          image: docker.io/gocrane/crane-scheduler:0.1.0
           command:
             - /scheduler
             - --leader-elect=true
@@ -68,7 +68,7 @@ metadata:
   namespace: crane-system
 data:
   scheduler-config.yaml: |
-    apiVersion: kubescheduler.config.k8s.io/v1beta2
+    apiVersion: kubescheduler.config.k8s.io/v1
     kind: KubeSchedulerConfiguration
     leaderElection:
       leaderElect: true

@@ -67,7 +67,7 @@ There are two options:
    ```
    2) Modify configfile of kube-scheduler(`scheduler-config.yaml`) to enable Dynamic scheduler plugin and configure plugin args:
    ```yaml
-   apiVersion: kubescheduler.config.k8s.io/v1beta2
+   apiVersion: kubescheduler.config.k8s.io/v1
    kind: KubeSchedulerConfiguration
    ...
    profiles:
@@ -200,11 +200,12 @@ Normal  Scheduled  28s   crane-scheduler  Successfully assigned default/cpu-stre
 
 |  Scheduler Image Version       | Supported Kubernetes Version |
 | ------------------------------ | :--------------------------: | 
+|         0.1.0                  |        >=1.30.0              |
 |         0.0.23                 |        >=1.22.0              |
 |         0.0.20                 |        >=1.18.0              | 
 
-The default scheudler image version is `0.0.23`, and you can run the following command for quick replacement:
+The default scheudler image version is `0.1.0`, and you can run the following command for quick replacement:
 
 ```bash
- KUBE_EDITOR="sed -i 's/v1beta2/v1beta1/g'" kubectl edit cm scheduler-config -n crane-system && KUBE_EDITOR="sed -i 's/0.0.23/0.0.20/g'" kubectl edit deploy crane-scheduler -n crane-system
+ KUBE_EDITOR="sed -i 's/v1/v1beta2/g'" kubectl edit cm scheduler-config -n crane-system && KUBE_EDITOR="sed -i 's/0.1.0/0.0.23/g'" kubectl edit deploy crane-scheduler -n crane-system
 ```

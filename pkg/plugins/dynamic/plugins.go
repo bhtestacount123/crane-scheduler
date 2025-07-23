@@ -90,7 +90,7 @@ func (ds *DynamicScheduler) Score(ctx context.Context, state *framework.CycleSta
 
 	score = score - int(hotValue*10)
 
-	finalScore := utils.NormalizeScore(int64(score),framework.MaxNodeScore,framework.MinNodeScore)
+	finalScore := utils.NormalizeScore(int64(score), framework.MaxNodeScore, framework.MinNodeScore)
 
 	klog.V(4).Infof("[crane] Node[%s]'s final score is %d, while score is %d and hot value is %f", node.Name, finalScore, score, hotValue)
 
@@ -108,7 +108,12 @@ func NewDynamicScheduler(plArgs runtime.Object, h framework.Handle) (framework.P
 		return nil, fmt.Errorf("want args to be of type DynamicArgs, got %T.", plArgs)
 	}
 
-	schedulerPolicy, err := LoadPolicyFromFile(args.PolicyConfigPath)
+	policyConfigPath := args.PolicyConfigPath
+	if policyConfigPath == "" {
+		policyConfigPath = "/etc/kubernetes/scheduler-policy.yaml"
+	}
+
+	schedulerPolicy, err := LoadPolicyFromFile(policyConfigPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get scheduler policy from config file: %v", err)
 	}

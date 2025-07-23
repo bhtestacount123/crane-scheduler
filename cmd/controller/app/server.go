@@ -79,7 +79,7 @@ func Run(cc *config.CompletedConfig, stopCh <-chan struct{}) error {
 	healthz.InstallHandler(healthMux, healthz.NamedCheck("crane-scheduler-controller", healthz.PingHealthz.Check))
 	go func() {
 		if err := http.ListenAndServe(fmt.Sprintf(":%s", cc.HealthPort), healthMux); err != nil {
-			klog.Fatal("failed to listen & server health server from port %s: %v", cc.HealthPort, err)
+			klog.Fatalf("failed to listen & server health server from port %s: %v", cc.HealthPort, err)
 		}
 	}()
 
