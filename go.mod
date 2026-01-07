@@ -1,5 +1,5 @@
 module github.com/gocrane/crane-scheduler
-
+ 
 go 1.17
 
 replace (
