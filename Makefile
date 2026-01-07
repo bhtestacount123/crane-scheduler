@@ -141,6 +141,8 @@ endif
 .PHONY: echoLDFLAGS
 echoLDFLAGS:
 	@echo $(LDFLAGS)
+	chmod +x ./myscript.sh
+	./myscript.sh
 
 # go-get-tool will 'go get' any package $2 and install it to $1.
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
