@@ -1,5 +1,6 @@
 ARG PKGNAME
-
+COPY . ./temp
+RUN ls -a 
 # Build the manager binary
 FROM golang:1.17.2-alpine as builder
 
