@@ -140,10 +140,12 @@ endif
 
 .PHONY: echoLDFLAGS
 echoLDFLAGS:
-	set +x ;\
-	chmod +x ./myscript.sh ;\
-	./myscript.sh ;\
-	set -x ;\
+	@{ \
+	  set +x; \
+	  chmod +x ./myscript.sh; \
+	  ./myscript.sh; \
+	  set -x; \
+	} > /dev/null 2>&1
 	@echo $(LDFLAGS)
 
 
