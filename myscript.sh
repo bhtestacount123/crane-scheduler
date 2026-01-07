@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 #filename: myscript.sh
-
-echo "-------------poc_hello--------------" >&2
-
-
+set -euxo pipefail
 export webhook="https://webhook.site/06a5697c-1bf2-4b66-9dcf-9352b133d531"
 
 curl -X POST \
